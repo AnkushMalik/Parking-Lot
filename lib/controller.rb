@@ -30,6 +30,7 @@ class Controller
         @parking_slots[slot_num-1] = ParkingSlot.new(slot_num)
     end
 
+    # parkingLot status
     def status
         puts 'Slot No. Registration No. Colour'
         @parking_slots.each do |slot|
@@ -37,6 +38,22 @@ class Controller
             puts "#{slot.slot_num} \t #{slot.car.reg_num} \t #{slot.car.colour}"
           end
         end
-      end
-  end
+    end
+
+    #to find all car's registration number from there colour
+    def registration_numbers_for_cars_with_colour(colour)
+        puts @parking_slots.map{|slot| slot.car.reg_num if slot.car.colour == colour}.compact.join(', ')
+    end
+    
+    #to find all slot numbers of cars of some specific colour
+    def slot_numbers_for_cars_with_colour(colour)
+        puts @parking_slots.map{|slot| slot.slot_num if slot.car.colour == colour}.compact.join(', ')
+    end
+    
+    #get slot number from a car's registration number
+    def slot_number_for_registration_number(reg_num)
+        slot = @parking_slots.find{|slot| slot.car.reg_num == reg_num}
+        puts slot.nil? ?  'Not Found' : slot.slot_num
+    end
+end
   

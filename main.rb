@@ -11,7 +11,10 @@ class Main
 			'create_parking_lot' => CreateParkingLot.new(@controller),
 			'park' => Park.new(@controller),
 			'leave' => Leave.new(@controller),
-			'status' => Status.new(@controller)
+			'status' => Status.new(@controller),
+			'registration_numbers_for_cars_with_colour' => RegistrationNumbersForCarsWithColour.new(@controller),
+			'slot_numbers_for_cars_with_colour' => SlotNumbersForCarsWithColour.new(@controller),
+			'slot_number_for_registration_number' => SlotNumberForRegistrationNumber.new(@controller)
 		}
 	end
 
