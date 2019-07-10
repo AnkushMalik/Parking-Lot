@@ -1,8 +1,10 @@
 #main file
 
-require_relative 'lib/commands/parent.rb'
-Dir["./lib/*.rb"].each {|file| require_relative file }
-Dir["./lib/commands/*.rb"].each {|file| require file }
+require_relative 'lib/parent.rb'
+require_relative 'lib/controller.rb'
+require_relative 'lib/parking_slot.rb'
+require_relative 'lib/car.rb'
+require_relative 'lib/commands.rb'
 
 class Main
 
@@ -21,7 +23,7 @@ class Main
 	end
 
 	def read_and_execute(str)
-		args = str.split(' ')
+		args = str.gsub(/\\n/, "").split(' ')
 		cmd_name = args[0]
 		cmd_args = args[1..args.length]
 		@commands[cmd_name].execute(cmd_args)

@@ -5,7 +5,12 @@ I am going to use almost all of the oops concepts for solving this assignment!
 
 ---
 
-Add leave and status features
-to run the cli app as of now, run the following command
+In this commit I tested my app using functional spec and solved some minor errors
 
-> ruby main.rb
+to run the cli app, run the following command
+
+> bin/parking_lot
+
+to run the app and input some file data run following command:
+
+> bin/parking_lot input.txt

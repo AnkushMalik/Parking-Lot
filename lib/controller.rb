@@ -11,49 +11,49 @@ class Controller
         size.to_i.times do |i|
             @parking_slots << ParkingSlot.new(i+1)
         end
-        puts "Created a parking lot with #{size} slots"
+        puts "Created a parking lot with #{size} slots\n"
     end
 
     def create_car_and_park(reg_num, colour)
         car = Car.new(reg_num, colour)
         slot = @parking_slots.find{|slot| slot.car.nil?} #first nil slot
     
-        return puts 'Sorry, parking lot is full' if slot.nil?
+        return puts "Sorry, parking lot is full\n" if slot.nil?
     
-        puts "Allocated slot number: #{slot.slot_num}"
+        puts "Allocated slot number: #{slot.slot_num}\n"
         slot.car = car
         car.parking_slot = slot
     end
 
     def empty_parking_slot(slot_num)
-        puts "Slot number #{slot_num} is free"
+        puts "Slot number #{slot_num} is free\n"
         @parking_slots[slot_num-1] = ParkingSlot.new(slot_num)
     end
 
     # parkingLot status
     def status
-        puts 'Slot No. Registration No. Colour'
+        puts "Slot No.    Registration No    Colour\n"
         @parking_slots.each do |slot|
           unless slot.car.nil?
-            puts "#{slot.slot_num} \t #{slot.car.reg_num} \t #{slot.car.colour}"
+            puts "#{slot.slot_num}           #{slot.car.reg_num}      #{slot.car.colour}\n"
           end
         end
     end
 
     #to find all car's registration number from there colour
     def registration_numbers_for_cars_with_colour(colour)
-        puts @parking_slots.map{|slot| slot.car.reg_num if slot.car.colour == colour}.compact.join(', ')
+        puts @parking_slots.map{|slot| slot.car.reg_num if slot.car.colour == colour}.compact.join(', ') + "\n"
     end
     
     #to find all slot numbers of cars of some specific colour
     def slot_numbers_for_cars_with_colour(colour)
-        puts @parking_slots.map{|slot| slot.slot_num if slot.car.colour == colour}.compact.join(', ')
+        puts @parking_slots.map{|slot| slot.slot_num if slot.car.colour == colour}.compact.join(', ') + "\n"
     end
     
     #get slot number from a car's registration number
     def slot_number_for_registration_number(reg_num)
         slot = @parking_slots.find{|slot| slot.car.reg_num == reg_num}
-        puts slot.nil? ?  'Not Found' : slot.slot_num
+        puts slot.nil? ?  "Not found\n" : slot.slot_num.to_s + "\n"
     end
 end
   
