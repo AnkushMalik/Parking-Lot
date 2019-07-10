@@ -5,7 +5,9 @@ Dir["./lib/*.rb"].each {|file| require_relative file }
 Dir["./lib/commands/*.rb"].each {|file| require file }
 
 class Main
-	def initialize
+
+	def initialize(path = 0)
+		@path = path
 		@controller = Controller.new
 		@commands = {
 			'create_parking_lot' => CreateParkingLot.new(@controller),
@@ -25,12 +27,27 @@ class Main
 		@commands[cmd_name].execute(cmd_args)
 	end
 
-	def call
-		while true
-			cmd = gets()
-			read_and_execute(cmd)
+	def call(file = 0)
+		case @path
+			when 0  #Intractive mode
+				while true
+					cmd = gets().strip
+					break if cmd == 'exit' #exit to stop
+					read_and_execute(cmd)
+				end
+			when 1  #contents of file mode
+				cmds = File.readlines(file)
+				cmds.each {|cmd| read_and_execute(cmd.strip)}
+			else
+				puts 'Unknown Input Mode'
 		end
 	end
 end
 
-Main.new.call
+#for @path:
+file = ARGV[0]
+unless file.nil?
+    Main.new(1).call(file)
+else
+    Main.new(0).call
+end
