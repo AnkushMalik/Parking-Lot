@@ -24,5 +24,19 @@ class Controller
         slot.car = car
         car.parking_slot = slot
     end
+
+    def empty_parking_slot(slot_num)
+        puts "Slot number #{slot_num} is free"
+        @parking_slots[slot_num-1] = ParkingSlot.new(slot_num)
+    end
+
+    def status
+        puts 'Slot No. Registration No. Colour'
+        @parking_slots.each do |slot|
+          unless slot.car.nil?
+            puts "#{slot.slot_num} \t #{slot.car.reg_num} \t #{slot.car.colour}"
+          end
+        end
+      end
   end
   

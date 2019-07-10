@@ -5,5 +5,7 @@ I am going to use almost all of the oops concepts for solving this assignment!
 
 ---
 
-- main.rb : main file of cli application!
-- lib folder : It will contains different classes which I will add later on.
+Add leave and status features
+to run the cli app as of now, run the following command
+
+> ruby main.rb

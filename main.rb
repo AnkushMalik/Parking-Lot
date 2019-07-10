@@ -9,7 +9,9 @@ class Main
 		@controller = Controller.new
 		@commands = {
 			'create_parking_lot' => CreateParkingLot.new(@controller),
-			'park' => Park.new(@controller)
+			'park' => Park.new(@controller),
+			'leave' => Leave.new(@controller),
+			'status' => Status.new(@controller)
 		}
 	end
 
@@ -28,5 +30,4 @@ class Main
 	end
 end
 
-a = Main.new
-a.call
+Main.new.call
